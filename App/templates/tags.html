@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}All Tags{% endblock %}
+{% block content %}
+    <!-- Question List -->
+    <!-- component -->
+
+<div class="relative flex flex-row flex-wrap ml-[100px] mt-[30px] ">
+    {% for t in tags %}
+        <div class="relative flex w-96 flex-col rounded-xl bg-black bg-clip-border text-gray-700 shadow-md  mb-[30px] mr-[20px]">
+            <div class="p-6">
+              <h5 class="text-white mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                {{t.name}}
+              </h5>
+              <p class="text-white block font-sans text-base font-light leading-relaxed text-inherit antialiased">
+                Number of times used: <span class="font-bold">{{t.count}}</span> 
+              </p>
+            </div>
+            <div class="p-6 pt-0">
+              <button
+                class="select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                type="button"
+                data-ripple-light="true"
+                
+              >
+                <a href="/tags/{{t.name|slugify}}">Go to tag</a>
+              </button>
+            </div>
+          </div>
+
+    
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{tag}}{% endblock %}
+{% block content %}
+      
+{% for q in questions %}
+<div class="card-container flex flex-col gap-4 lg:p-4 p-2  rounde-lg m-2">
+      <div  class="h-[100px] card-body flex items-center justify-between w-full p-2 lg:rounded-full md:rounded-full hover:bg-gray-100 cursor-pointer border-2 rounded-lg">
+
+          <div class="lg:flex md:flex items-center">
+          <div class="h-12 w-12 mb-2 lg:mb-0 border md:mb-0 rounded-full mr-3"></div>
+          <div class="flex flex-col">
+              <div class="card-title text-xl leading-3 text-gray-700 font-bold w-full"><a href="{% url 'app:content' id=q.id %}">{{q.title}}</a></div>
+              <div class="card-content text-lg text-gray-600 w-full">{{q.content}}</div>
+              <p>
+                <a class="text-purple-600 mr-3" href="">{{q.user}}</a>
+                <a class="text-purple-600 mr-3" href="">{{q.answer_set.count}} Answers</a>
+                <a class="text-purple-600 mr-3" href="">{{q.total_comments}} Comments</a>
+            </p>
+          </div>
+          </div>
+          <svg class="h-6 w-6 mr-1 invisible md:visible lg:visible xl:visible" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+              </div>
+        </div>
+        </div>
+</div>
+{% endfor %}
+<!-- component -->
+<nav>
+<ul class="flex justify-center">
+  <li>
+    {% if questions.has_previous %}
+    <a  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"  href="?page={{questions.previous_page_number}}"  aria-label="Previous">
+      <span class="material-icons text-sm">keyboard_arrow_left</span>
+    </a>
+    {% endif %}
+  </li>
+  {% for i in questions.paginator.page_range %}
+  <li>
+    <a  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-pink-600 to-pink-400 p-0 text-sm text-white shadow-md shadow-pink-500/20 transition duration-150 ease-in-out"  href="?page={{i}}">
+        {{i}}
+    </a>
+  </li>
+  {% endfor %}
+  <li>
+    {% if questions.has_next %}
+    <a  class="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"  href="?page={{questions.next_page_number}}"  aria-label="Next">
+      <span class="material-icons text-sm">keyboard_arrow_right</span>
+    </a>
+    {% endif %}
+  </li>
+</ul>
+</nav>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} User Login {% endblock %}
+{% block content %}
+    <div class="class-container">
+        <div class="card ml-[500px] mt-[50px] bg-blue-400 h-[400px] w-[400px] p-[100px] rounded-[9999px]" >
+            <h5 class="text-2xl font-bold mb-[30px]">Want to Login?</h5>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <table>
+                        {{form.as_table}}
+                        <tr>
+                            <td>
+                                <button class="bg-black text-white font-semibold p-1 mt-[20px] rounded-lg">Login</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
