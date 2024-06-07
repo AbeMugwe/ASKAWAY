@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load static %}
 {% block title %}{{questions.title}}{% endblock %}
 {% block content %}
       
@@ -96,7 +96,7 @@
                 </form>
             {% endif %}
           </div>
-    <script src="{% staticfiles 'jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
     <script>
         $(document).ready(function(){
             $(".save-comment").on('click',function(){
